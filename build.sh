@@ -19,6 +19,7 @@ cd -
 
 cd llvm
 ./configure --enable-optimized --disable-assertions --enable-targets=x86 && REQUIRES_RTTI=1 make -j $(nproc)
+sudo make install
 cd -
 
 mkdir -p build-panda && cd build-panda
