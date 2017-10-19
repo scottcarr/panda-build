@@ -22,3 +22,4 @@ cd llvm
 cd -
 
 mkdir -p build-panda && cd build-panda
+../panda/build.sh
