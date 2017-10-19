@@ -3,7 +3,7 @@ sudo apt update
 sudo apt-get build-dep qemu
 sudo apt-get install python-pip git protobuf-compiler protobuf-c-compiler \
   libprotobuf-c0-dev libprotoc-dev libelf-dev \
-  libcapstone-dev libdwarf-dev python-pycparser libc++-dev cmake git \
+  libcapstone-dev python-pycparser libc++-dev cmake git \
   subversion
   
 git clone https://github.com/panda-re/panda
@@ -21,6 +21,16 @@ cd llvm
 ./configure --enable-optimized --disable-assertions --enable-targets=x86 && REQUIRES_RTTI=1 make -j $(nproc)
 sudo make install
 cd -
+
+wget https://www.prevanders.net/libdwarf-20160613.tar.gz
+tar xf libdwarf-20160613.tar.gz
+cd dwarf-20160613
+./configure --enable-shared
+make
+sudo mkdir -p /usr/local/include/libdwarf
+sudo cp libdwarf/libdwarf.h /usr/local/include/libdwarf
+sudo cp libdwarf/dwarf.h /usr/local/include/libdwarf
+sudo cp libdwarf/libdwarf.so /usr/local/lib/ 
 
 mkdir -p build-panda && cd build-panda
 ../panda/build.sh
